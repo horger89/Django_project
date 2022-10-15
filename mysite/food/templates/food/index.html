@@ -1,0 +1,55 @@
+
+{% extends 'food/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+
+    {% block body %}
+
+      {% for item in item_list %}
+      
+      <div class="container">
+
+        <div class="row">        
+            
+            <div class="col-md-6" style="padding-left: 150px;  padding-right: 0px;">
+                {% if item.item_image %}
+                <img src="{{ item.item_image.url }}"  height="350" width="350"/>
+                {% else %}
+                <img src="{% static 'users/images/coming_soon.jpg' %}"  height="350" width="350"/>
+                {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+            <h1>{{ item.item_name }}</h1> 
+            <p>{{ item.item_disc }}</p>     
+            <p>${{ item.item_price }} </p>
+            </div>
+
+           
+
+            <div class="col-md-2">
+            <a href="{% url 'food:detail' item.id %}" class="btn btn-success">Details</a>
+
+            </div>
+
+        </div>
+    </div>
+<br>
+       {% endfor %}
+
+       
+       
+
+    {% endblock %}
+
+</body>
+</html>

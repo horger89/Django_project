@@ -1,0 +1,41 @@
+{% extends 'food/base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">  
+
+        <center>
+
+           {% if searched %}
+
+               <h1>You Searched For {{ searched }} </h1>
+               
+               <br>
+
+               {% for food_item in searched_items %}
+
+               <img src="{{ food_item.item_image.url }}" height="250" width="250" />
+                - <strong>{{ food_item.item_name }}</strong>
+                - <a href="{% url 'food:detail' food_item.id %}" class="btn btn-success">Detail Page</a>
+                <br>
+                <br>
+
+               {% endfor %}
+
+            {% else %}
+
+                <h1>OOOps You Forgot To Search For An Item ...</h1>
+            
+            {% endif %}
+        
+        
+        </center>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'food/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="col-md-3" style="padding-left: 50px;  padding-right: 0px;">
+  
+    {% if user.profile.image %}
+      <img src="{{ user.profile.image.url }}" class="img-fluid"/>
+    
+    {% else %}
+    <img src="{% static 'users/images/profilepic.jpg' %}" class="img-fluid"/>
+    {% endif %}
+
+</div>
+
+<div class="col-md-4" style="padding-left: 85px;  padding-right: 0px;">
+   
+    <h1>{{ user.username }}</h1>
+
+    {% if user.profile.location %}
+    <h3>{{ user.profile.location }}</h3>
+    {% else %}
+    <h3></h3>
+    {% endif %}
+
+    {% if user.profile.id %}
+
+    <a href="{% url 'update_profile' user.profile.id %}">Update Profile</a>
+
+    {% else %}
+
+    <a href="{% url 'create_profile' %}">Create Profile</a>
+    
+    {% endif%}
+    
+
+    <br>
+    <br>
+    <br>
+
+
+    
+
+</div>
+
+
+
+{% endblock %}
